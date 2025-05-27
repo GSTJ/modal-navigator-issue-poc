@@ -1,9 +1,13 @@
 import { useCallback, useMemo, useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const NativeStack = createNativeStackNavigator();
+const BrokenNativeStack = createNativeStackNavigator();
+const WorkingNormalStack = createStackNavigator();
+
+const Stack = BrokenNativeStack;
 
 export default function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -27,7 +31,7 @@ export default function App() {
     <View style={styles.container}>
       <NavigationContainer>
         {isNavigatorRendered && (
-          <NativeStack.Navigator
+          <Stack.Navigator
             screenOptions={{
               headerShown: false,
               gestureDirection: "horizontal",
@@ -36,14 +40,14 @@ export default function App() {
               presentation: "modal",
             }}
           >
-            <NativeStack.Screen
+            <Stack.Screen
               name="Home"
               component={HomeScreen}
               options={{
                 presentation: "modal",
               }}
             />
-          </NativeStack.Navigator>
+          </Stack.Navigator>
         )}
       </NavigationContainer>
 
