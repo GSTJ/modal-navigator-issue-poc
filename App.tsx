@@ -35,25 +35,20 @@ export default function App() {
             screenOptions={{
               headerShown: false,
               gestureDirection: "horizontal",
-              fullScreenGestureEnabled: true,
+              fullScreenGestureEnabled: false,
               animation: "slide_from_right",
-              presentation: "modal",
+              presentation: "card",
+              animationTypeForReplace: "push",
+              autoHideHomeIndicator: true,
             }}
           >
-            <Stack.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{
-                presentation: "modal",
-              }}
-            />
+            <Stack.Screen name="Home" component={HomeScreen} />
           </Stack.Navigator>
         )}
       </NavigationContainer>
 
       <Modal
         visible={isModalVisible}
-        animationType="fade"
         transparent
         hardwareAccelerated
         statusBarTranslucent
@@ -93,9 +88,9 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     backgroundColor: "red",
-    opacity: 0.5,
     alignItems: "center",
     justifyContent: "center",
+    gap: 8,
   },
   button: {
     backgroundColor: "blue",
